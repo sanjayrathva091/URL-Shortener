@@ -2,7 +2,9 @@ const Url = require("../models/Url");
 const shortid = require("shortid");
 const redis = require("redis");
 
-const redisClient = redis.createClient();
+const redisClient = redis.createClient({
+    url: process.env.REDIS_URL,
+});
 
 exports.shortenUrl = async (req, res) => {
     const { originalUrl } = req.body;
@@ -12,6 +14,10 @@ exports.shortenUrl = async (req, res) => {
     await newUrl.save();
 
     // Cache in Redis
+    redisClient.on("error", function (err) {
+        throw err;
+    });
+    await redisClient.connect()
     redisClient.set(shortUrl, originalUrl);
 
     res.json({ shortUrl });
