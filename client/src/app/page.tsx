@@ -12,7 +12,7 @@ export default function Home() {
     setError("");
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/url/shorten`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/shorten`,
         { originalUrl }
       );
       setShortUrl(
