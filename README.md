@@ -45,7 +45,7 @@ A simple **MERN + Redis + Next.js**-based URL shortener that allows users to gen
 ### **1️⃣ Clone the Repo**
 
 ```bash
-git clone https://github.com/your-username/url-shortener.git
+git clone https://github.com/sanjayrathva091/url-shortener.git
 cd url-shortener
 ```
 
