@@ -19,7 +19,11 @@ export default function Home() {
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/${res.data.shortUrl}`
       );
     } catch (err) {
-      setError("Failed to shorten URL. Please try again.");
+      if (axios.isAxiosError(err)) {
+        setError(err.message || "Failed to shorten URL. Please try again.");
+      } else {
+        setError("Failed to shorten URL. Please try again.");
+      }
     }
   };
 
